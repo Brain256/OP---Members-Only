@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Sign Up</title>
+</head>
+<body>
+    <h1>Member Sign Up Form</h1>
+
+    <% if(errors) { %>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <form action="/users/member-sign-up" method="post">
+
+        <div>
+            <label for="password">Club Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
