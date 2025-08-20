@@ -10,11 +10,29 @@
     <% if (locals.user) {%>
         <h1>WELCOME BACK <%= user.username %></h1>
         <a href="/users/log-out">LOG OUT</a>
-        <a href="users/member-sign-up">Become a Member</a>
+        <a href="/users/member-sign-up">Become a Member</a>
+        <a href="/messages/new-message">Create a Message</a>
     <% } else { %>
         <a href="/users/sign-up">Sign Up</a>
         <a href="/users/log-in">Log In</a>
     <%}%>
+
+    <% if(messages) { %>
+        <div>
+            <% messages.forEach(msg => { %>
+                <% if(locals.user) { %>
+                    <div><%= msg.username %></div>
+                    <div><%= msg.time %></div>
+                <% } %>
+
+                <div><%= msg.title %></div>
+                <div><%= msg.text %></div>
+                 
+            <% }) %>
+        </div>
+    <% } %>
+
+
     
 </body>
 </html>

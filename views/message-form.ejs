@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/messages/new-message">
+        <div>
+            <label for="title">Enter Title</label>
+            <input type="text" name="title" id="title" required>
+        </div>
+
+        <div>
+            <label for="text">Enter Text</label>
+            <textarea name="text" id="text" placeholder="Enter Text Here" required></textarea>
+        </div>
+
+        <button type="submit">Post Message</button>
+    </form>
+</body>
+</html>

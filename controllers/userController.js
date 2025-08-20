@@ -33,9 +33,10 @@ exports.submitSignUp = async (req, res) => {
     const result = await createUser(firstname, lastname, username, hashedPassword); 
     const user = result.rows[0]; 
 
-    req.login(user, () => {
-        res.redirect('/'); 
-    })
+    req.login(user, (err) => {
+        if (err) throw err;  
+        res.redirect('/');
+    });
 }
 
 exports.submitMemberSignUp = async (req, res) => {

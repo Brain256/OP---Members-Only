@@ -16,6 +16,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); 
 
 const userRouter = require('./routes/userRouter.js'); 
+const messageRouter = require('./routes/messageRouter.js'); 
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
@@ -23,11 +24,15 @@ app.use(express.urlencoded({ extended: true}));
 
 const PORT = process.env.PORT || 3000; 
 
-app.get("/", (req, res) => {
-    res.render("home", { user: req.user });
+app.get("/", async (req, res) => {
+
+    const { rows } = await pool.query('SELECT username, title, text, time FROM users JOIN messages ON (users.id = user_id)'); 
+
+    res.render("home", { user: req.user, messages:rows});
 })
 
 app.use("/users", userRouter); 
+app.use("/messages", messageRouter); 
 
 app.listen(3000, () => {
     console.log(`Server started on port ${PORT}`); 
