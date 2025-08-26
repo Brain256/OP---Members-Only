@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <h1>Members Only</h1>
@@ -18,16 +19,20 @@
     <%}%>
 
     <% if(messages) { %>
-        <div>
+        <div class="msg-container">
             <% messages.forEach(msg => { %>
-                <% if(locals.user) { %>
-                    <div><%= msg.username %></div>
-                    <div><%= msg.time %></div>
-                <% } %>
+                <div class="msg">
+                    <% if(locals.user) { %>
+                        <% if(locals.user.member_status) { %>
+                            <div><%= msg.username %></div>
+                            <div><%= msg.time %></div>
+                        <% } %>
+                        
+                    <% } %>
 
-                <div><%= msg.title %></div>
-                <div><%= msg.text %></div>
-                 
+                    <div><%= msg.title %></div>
+                    <div><%= msg.text %></div>
+                </div>
             <% }) %>
         </div>
     <% } %>

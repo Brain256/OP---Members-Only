@@ -12,7 +12,7 @@ exports.getMemberSignUp = (req, res) => {
 }
 
 exports.getLogIn = (req, res) => {
-    res.render("log-in"); 
+    res.render("log-in", { messages: req.flash() }); 
 }
 
 exports.submitSignUp = async (req, res) => {
@@ -57,7 +57,8 @@ exports.submitMemberSignUp = async (req, res) => {
 
 exports.submitLogIn = passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/users/log-in"
+    failureRedirect: "/users/log-in",
+    failureFlash: true
 })
 
 exports.logOut = (req, res) => {

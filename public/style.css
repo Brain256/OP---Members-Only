@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+.msg-container {
+    display:grid; 
+    margin-top:20px; 
+    gap:10px; 
+}
+
+body {
+    font-family: 'Inter', sans-serif; 
+}
+
+.msg {
+    padding:20px; 
+    background-color:rgb(198, 198, 198); 
+    border-radius:20px; 
+    width:fit-content; 
+}
+
+a, button {
+    text-decoration:none; 
+    background-color:black; 
+    color:white; 
+    border-radius:10px; 
+    padding: 5px 10px; 
+}
+
+a:hover, button:hover {
+    cursor:pointer; 
+}

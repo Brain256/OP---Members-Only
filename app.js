@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express'); 
 const app = express(); 
+const flash = require('connect-flash'); 
 
 const session = require("express-session");
 const passport = require("passport");
@@ -21,6 +22,8 @@ const messageRouter = require('./routes/messageRouter.js');
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true}));
+app.use(express.static(path.join(__dirname, "public"))); 
+app.use(flash()); 
 
 const PORT = process.env.PORT || 3000; 
 
@@ -43,11 +46,13 @@ passport.use(
     try {
       const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
       const user = rows[0];
-      const match = await bcrypt.compare(password, user.password); 
-
+    
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
+
+      const match = await bcrypt.compare(password, user.password);
+
       if (!match) {
         return done(null, false, { message: "Incorrect password" });
       }
